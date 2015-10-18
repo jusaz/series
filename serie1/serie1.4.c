@@ -8,6 +8,8 @@ int generateNumber();
 int main ()
 {
     int x, y, i, r;
+    char* line = NULL;
+    size_t size;
 
     i = 0;
     r = 0;
@@ -18,25 +20,25 @@ int main ()
         {
             r = 3;
             x = generateNumber();
-            printf ("Qual o número de 1 a 100 gerado pelo programa?\n");
         }
 
-        scanf("%d", &y);
+        printf ("Qual o número de 1 a 100 gerado pelo programa?\n");
+        getline(&line, &size, stdin);
 
-        if(y >= 1 && y <= 100)
+        y = atoi(line);
+
+        if( y >= 1 && y <= 100)
         {
             if (y<x)
             {
                 i++;
                 printf ("O número que escolheu está abaixo do secreto\n");
-                printf ("Insira outro número:\n");
             }
 
             if (y>x)
             {
                 i++;
                 printf ("O número que escolheu está acima do secreto\n");
-                printf ("Insira outro número?\n");
             }
 
             if (y==x)
@@ -45,7 +47,8 @@ int main ()
                 do
                 {
                     printf ("Prima 1 para voltar a jogar e prima 2 para sair\n");
-                    scanf ("%d",&r);
+                    getline(&line, &size, stdin);
+                    r = atoi(line);
                     if ( r == 2)
                         return 0;
                     else if ( r == 1)
@@ -59,7 +62,7 @@ int main ()
         }
         else
         {
-            printf ("Insira um numero entre 1 e 100:\n");
+            printf("Numero Invalido\n");
         }
     }
 }
